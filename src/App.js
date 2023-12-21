@@ -1,4 +1,5 @@
 import './App.css';
+import { Calendar } from './components/Calendar';
 
 function App() {
   return (
@@ -6,7 +7,7 @@ function App() {
       <header className="App-header">
         eCalendar
       </header>
-      
+      <Calendar/>
     </div>
   );
 }
