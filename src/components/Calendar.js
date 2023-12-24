@@ -1,3 +1,4 @@
+import styles from "../styles/calendar.module.css"
 
 const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 const daysOfMonth = {Jan: 31 , Feb: 28 , Mar: 31, Apr: 30, May: 31, Jun: 30, Jul: 31, Aug: 31, Sep: 30, Oct: 31, Nov: 30, Dec: 31};
@@ -55,14 +56,15 @@ export const Calendar = () => {
 
 
     return ( 
-        <div>
+        <div className={styles.main_calendar}>
             {displayMonths()}
 
-            <div>
+            <div className={styles.days_weeks}>
                 {displayWeek()}
-            </div>
-            <div>
-                {displayDaysOfMonth()}
+                <div>
+                    {displayDaysOfMonth()}
+                </div>
+            
             </div>
 
 
