@@ -4,9 +4,10 @@ import { Calendar } from './components/Calendar';
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
+      {/* <header className="App-header">
         eCalendar
-      </header>
+      </header> */}
+      <h1> eCalendar</h1>
       <Calendar/>
     </div>
   );
