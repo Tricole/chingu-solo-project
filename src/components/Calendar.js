@@ -13,9 +13,16 @@ export const Calendar = () => {
     const monthIndex = newDate.getMonth();
     const year = newDate.getFullYear();
 
+    const [days, setDays] = useState([]);
+
+
     useEffect(() => {
 
-    }, [])
+        const leapYear = checkLeapYear(year);
+        let totalDays = leapYear && months[monthIndex] === "Feb" ? 29 : daysOfMonth[months[monthIndex]];
+        setDays([...Array(totalDays).keys()].slice(1));
+        
+    }, [monthIndex, year]);
 
     const displayMonths = () => { 
         
@@ -26,7 +33,6 @@ export const Calendar = () => {
         
     const DisplayDaysOfMonth = () => {
 
-        const [days, setDays] = useState([]);
 
 
 
@@ -34,7 +40,7 @@ export const Calendar = () => {
         let totalDays = 0;
             totalDays = leapYear && months[monthIndex] === "Feb" ?  29 : daysOfMonth[months[monthIndex]];
             
-        setDays([...Array(totalDays).keys()].slice(1));
+        // setDays([...Array(totalDays).keys()].slice(1));
 
         // let output = [];
         // for (let day = 1 ; day <= totalDays ; day++)
@@ -42,7 +48,7 @@ export const Calendar = () => {
 
         return (
             <div className={styles.days_weeks}>
-                {days.map( day => <div className={styles.grid_item}>{day} </div>)}
+               
             </div>
         )
 
@@ -78,9 +84,11 @@ export const Calendar = () => {
 
             {/* <div className={styles.days_weeks}> */}
                 {displayWeek()}
-                <div>
-                    {DisplayDaysOfMonth()}
-                </div>
+                {days.map( day => 
+                    <div className={styles.grid_item}>
+                        {day} 
+                    </div>
+                )}
             
             {/* </div> */}
 
