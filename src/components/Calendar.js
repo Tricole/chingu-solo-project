@@ -21,7 +21,7 @@ export const Calendar = () => {
         const leapYear = checkLeapYear(year);
         let totalDays = leapYear && months[monthIndex] === "Feb" ? 29 : daysOfMonth[months[monthIndex]];
         setDays([...Array(totalDays).keys()].slice(1));
-        
+
     }, [monthIndex, year]);
 
     const displayMonths = () => { 
@@ -34,26 +34,17 @@ export const Calendar = () => {
     const DisplayDaysOfMonth = () => {
 
 
-
-
         const leapYear = checkLeapYear(year)
         let totalDays = 0;
             totalDays = leapYear && months[monthIndex] === "Feb" ?  29 : daysOfMonth[months[monthIndex]];
             
         // setDays([...Array(totalDays).keys()].slice(1));
 
-        // let output = [];
-        // for (let day = 1 ; day <= totalDays ; day++)
-        //     output.push(day);
-
         return (
             <div className={styles.days_weeks}>
                
             </div>
         )
-
-
-        // return output;
     }
 
     const displayWeek = () => {
@@ -61,44 +52,41 @@ export const Calendar = () => {
         return daysOfWeek;
     }
 
-    const checkLeapYear = (year) => {
-
-        let leapYear = false;
-        year % 100 === 0?   
-            (year % 400 ?
-                leapYear = true :
-                leapYear = false)
-            :(year % 4 === 0?
-                leapYear = true :
-                leapYear = false
-            )
-        return leapYear;
-    }
-
-
-
 
     return ( 
         <div className={styles.main_calendar}>
             {displayMonths()}
 
-            {/* <div className={styles.days_weeks}> */}
-                {displayWeek()}
+            <div className={styles.days_weeks}>
+                
+                {daysOfWeek.map (weekDay => 
+                    <div className={styles.grid_item}>
+                    {weekDay} 
+                </div>
+                )}
                 {days.map( day => 
                     <div className={styles.grid_item}>
                         {day} 
                     </div>
                 )}
             
-            {/* </div> */}
-
+            </div>
 
         </div>
-    
     )
+}
 
 
+const checkLeapYear = (year) => {
 
-
-
+    let leapYear = false;
+    year % 100 === 0?   
+        (year % 400 ?
+            leapYear = true :
+            leapYear = false)
+        :(year % 4 === 0?
+            leapYear = true :
+            leapYear = false
+        )
+    return leapYear;
 }
