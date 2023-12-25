@@ -15,18 +15,29 @@ export const Calendar = () => {
     const indexFirstDayOfMonth = new Date (`${months[monthIndex]} 1 ${year}`).getDay();
 
 
+
     const [days, setDays] = useState([]);
 
 
     useEffect(() => {
 
         const leapYear = checkLeapYear(year);
+        
         let prevMonthDays = daysOfPrevMonth();
-        console.log(prevMonthDays)
-        let daysOfPrevMonthArr = [...Array(prevMonthDays + 1).keys()].slice(prevMonthDays - indexFirstDayOfMonth + 1 );
+        let prevMonthDaysArr = [...Array(prevMonthDays + 1).keys()].slice(prevMonthDays - indexFirstDayOfMonth + 1 );
+        
+        let currMonthDays = leapYear && months[monthIndex] === "Feb" ? 29 : daysOfMonth[months[monthIndex]];
+        let currMonthDaysArr = [...Array(currMonthDays + 1).keys()].slice(1);
+        
+        const indexLastDayOfMonth = new Date (`${months[monthIndex]} ${currMonthDays} ${year}`).getDay();
+        console.log(indexLastDayOfMonth);
 
-        let totalDays = leapYear && months[monthIndex] === "Feb" ? 29 : daysOfMonth[months[monthIndex]];
-        setDays( [...daysOfPrevMonthArr, ...[...Array(totalDays + 1).keys()].slice(1)]);
+
+        let nextMonthDays = 42 - (indexFirstDayOfMonth) - currMonthDays;
+        console.log(nextMonthDays)
+        let nextMonthDaysArr = [...Array(nextMonthDays + 1).keys()].slice(1);
+
+        setDays( [...prevMonthDaysArr, ...currMonthDaysArr, ...nextMonthDaysArr]);
 
     }, [monthIndex, year]);
 
