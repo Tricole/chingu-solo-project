@@ -7,5 +7,15 @@
 
 .days_weeks {
     display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(7, 1fr);
     gap: 5px;
+    /* grid-template-areas:
+        'sun mon tue wed thu fri sat'
+        'day1 day2 day3 day4 day5 day6 day 7' */
+}
+
+.grid_item {
+    padding: 5px;
+    text-align: center;
 }

@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from 'react';
 import styles from "../styles/calendar.module.css"
 
 const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -8,9 +9,13 @@ const daysOfWeek = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
 
 export const Calendar = () => {
 
-    let newDate = new Date()
-    let monthIndex = newDate.getMonth();
-    let year = newDate.getFullYear();
+    const newDate = new Date()
+    const monthIndex = newDate.getMonth();
+    const year = newDate.getFullYear();
+
+    useEffect(() => {
+
+    }, [])
 
     const displayMonths = () => { 
         
@@ -19,18 +24,30 @@ export const Calendar = () => {
             )
     }
         
-    const displayDaysOfMonth = () => {
+    const DisplayDaysOfMonth = () => {
+
+        const [days, setDays] = useState([]);
+
+
 
         const leapYear = checkLeapYear(year)
+        let totalDays = 0;
+            totalDays = leapYear && months[monthIndex] === "Feb" ?  29 : daysOfMonth[months[monthIndex]];
             
-        let days = 0;
-            days = leapYear && months[monthIndex] === "Feb" ?  29 : daysOfMonth[months[monthIndex]];
-        
-            let output = [];
-            for (let day = 1 ; day <= days ; day++)
-            output.push(day);
+        setDays([...Array(totalDays).keys()].slice(1));
 
-        return output;
+        // let output = [];
+        // for (let day = 1 ; day <= totalDays ; day++)
+        //     output.push(day);
+
+        return (
+            <div className={styles.days_weeks}>
+                {days.map( day => <div className={styles.grid_item}>{day} </div>)}
+            </div>
+        )
+
+
+        // return output;
     }
 
     const displayWeek = () => {
@@ -59,13 +76,13 @@ export const Calendar = () => {
         <div className={styles.main_calendar}>
             {displayMonths()}
 
-            <div className={styles.days_weeks}>
+            {/* <div className={styles.days_weeks}> */}
                 {displayWeek()}
                 <div>
-                    {displayDaysOfMonth()}
+                    {DisplayDaysOfMonth()}
                 </div>
             
-            </div>
+            {/* </div> */}
 
 
         </div>
