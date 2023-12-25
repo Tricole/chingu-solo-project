@@ -15,15 +15,15 @@
         'day1 day2 day3 day4 day5 day6 day 7' */
 }
 
-.grid_curr_Month {
+.grid_curr_month {
     padding: 5px;
     text-align: center;
     color: black;
 }
 
-.grid_other_Month {
+.grid_other_month {
     padding: 5px;
     text-align: center;
-    color: grey;
-
+    color: black;
+    opacity: 0.3;
 }

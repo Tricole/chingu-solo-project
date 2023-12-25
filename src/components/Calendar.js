@@ -15,8 +15,11 @@ export const Calendar = () => {
     const indexFirstDayOfMonth = new Date (`${months[monthIndex]} 1 ${year}`).getDay();
 
 
-
+    const [prevDays, setPrevDays] = useState([])
     const [days, setDays] = useState([]);
+    const [nextDays, setNextDays] = useState([])
+    
+    
 
 
     useEffect(() => {
@@ -29,15 +32,13 @@ export const Calendar = () => {
         let currMonthDays = leapYear && months[monthIndex] === "Feb" ? 29 : daysOfMonth[months[monthIndex]];
         let currMonthDaysArr = [...Array(currMonthDays + 1).keys()].slice(1);
         
-        const indexLastDayOfMonth = new Date (`${months[monthIndex]} ${currMonthDays} ${year}`).getDay();
-        console.log(indexLastDayOfMonth);
-
-
         let nextMonthDays = 42 - (indexFirstDayOfMonth) - currMonthDays;
-        console.log(nextMonthDays)
         let nextMonthDaysArr = [...Array(nextMonthDays + 1).keys()].slice(1);
 
-        setDays( [...prevMonthDaysArr, ...currMonthDaysArr, ...nextMonthDaysArr]);
+
+        setPrevDays(prevMonthDaysArr);
+        setDays(currMonthDaysArr);
+        setNextDays(nextMonthDaysArr);
 
     }, [monthIndex, year]);
 
@@ -100,12 +101,23 @@ export const Calendar = () => {
                 </div>
                 )}
 
+                {prevDays.map( day =>
+                    <div className={styles.grid_other_month}>
+                        {day} 
+                    </div>
+                )}
+
                 {days.map( day => 
-                    <div className={styles.grid_curr_Month}>
+                    <div className={styles.grid_curr_month}>
                         {day} 
                     </div>
                 )}
             
+                {nextDays.map( day =>
+                    <div className={styles.grid_other_month}>
+                        {day} 
+                    </div>
+                )}
             </div>
 
         </div>
