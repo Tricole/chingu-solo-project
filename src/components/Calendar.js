@@ -95,13 +95,13 @@ export const Calendar = () => {
             <div className={styles.days_weeks}>
                 
                 {daysOfWeek.map (weekDay => 
-                    <div className={styles.grid_item}>
+                    <div className={styles.grid_curr_Month}>
                     {weekDay} 
                 </div>
                 )}
 
                 {days.map( day => 
-                    <div className={styles.grid_item}>
+                    <div className={styles.grid_curr_Month}>
                         {day} 
                     </div>
                 )}
