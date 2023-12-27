@@ -4,9 +4,8 @@ import { Calendar } from './components/Calendar';
 
 function App() {
   return (
-
-    
-      <div >
+  
+      <div className='App' >
         <h1> eCalendar</h1>  
         <Calendar/>
       </div>
