@@ -19,7 +19,6 @@ export const Calendar = () => {
     const [days, setDays] = useState([]);
     const [nextDays, setNextDays] = useState([]);
     const [currMonth, setMonth] = useState(monthIndex);
-
     const [currYear, setYear] = useState(year)
 
 
