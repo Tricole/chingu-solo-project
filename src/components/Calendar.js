@@ -49,7 +49,7 @@ export const Calendar = () => {
             <span> {months[monthIndex === 0? 11 : monthIndex - 1]} {months[monthIndex]} {months[monthIndex === 11? 0 : monthIndex + 1]}</span>
             )
     }
-        
+
 
     const daysOfPrevMonth = () => {
 
@@ -68,12 +68,24 @@ export const Calendar = () => {
 
     }
 
+    const toPrevMonth = () => {
+        console.log("previous month")
+
+    };
+
+    const toNextMonth = () => {
+        console.log("next month")
+
+    };
+
     return ( 
         <div className={styles.main_calendar}>
             {displayMonths()}
             <div className={styles.days_weeks_wrapper}>
 
-                <FontAwesomeIcon icon={solid("arrow-left")} />
+                <FontAwesomeIcon icon={solid("arrow-left")} 
+                    onClick={toPrevMonth}
+                />
 
 
                 <div className={styles.days_weeks}>
@@ -103,7 +115,9 @@ export const Calendar = () => {
                     )}
                 </div>
 
-                <FontAwesomeIcon icon={solid("arrow-right")} />
+                <FontAwesomeIcon icon={solid("arrow-right")} 
+                    onClick={toNextMonth}
+                />
             </div>
 
 
