@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { solid } from '@fortawesome/fontawesome-svg-core/import.macro'
+
 import styles from "../styles/calendar.module.css"
 
 const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -18,8 +21,6 @@ export const Calendar = () => {
     const [prevDays, setPrevDays] = useState([])
     const [days, setDays] = useState([]);
     const [nextDays, setNextDays] = useState([])
-    
-    
 
 
     useEffect(() => {
@@ -49,21 +50,6 @@ export const Calendar = () => {
             )
     }
         
-    const DisplayDaysOfMonth = () => {
-
-
-        const leapYear = checkLeapYear(year)
-        let totalDays = 0;
-            totalDays = leapYear && months[monthIndex] === "Feb" ?  29 : daysOfMonth[months[monthIndex]];
-            
-        // setDays([...Array(totalDays).keys()].slice(1));
-
-        return (
-            <div className={styles.days_weeks}>
-               
-            </div>
-        )
-    }
 
     const daysOfPrevMonth = () => {
 
@@ -82,43 +68,44 @@ export const Calendar = () => {
 
     }
 
-
-    const displayWeek = () => {
-
-        return daysOfWeek;
-    }
-
-
     return ( 
         <div className={styles.main_calendar}>
             {displayMonths()}
+            <div className={styles.days_weeks_wrapper}>
 
-            <div className={styles.days_weeks}>
+                <FontAwesomeIcon icon={solid("arrow-left")} />
+
+
+                <div className={styles.days_weeks}>
+                    
+                    {daysOfWeek.map (weekDay => 
+                        <div className={styles.grid_curr_Month}>
+                        {weekDay} 
+                    </div>
+                    )}
+
+                    {prevDays.map( day =>
+                        <div className={styles.grid_other_month}>
+                            {day} 
+                        </div>
+                    )}
+
+                    {days.map( day => 
+                        <div className={styles.grid_curr_month}>
+                            {day} 
+                        </div>
+                    )}
                 
-                {daysOfWeek.map (weekDay => 
-                    <div className={styles.grid_curr_Month}>
-                    {weekDay} 
+                    {nextDays.map( day =>
+                        <div className={styles.grid_other_month}>
+                            {day} 
+                        </div>
+                    )}
                 </div>
-                )}
 
-                {prevDays.map( day =>
-                    <div className={styles.grid_other_month}>
-                        {day} 
-                    </div>
-                )}
-
-                {days.map( day => 
-                    <div className={styles.grid_curr_month}>
-                        {day} 
-                    </div>
-                )}
-            
-                {nextDays.map( day =>
-                    <div className={styles.grid_other_month}>
-                        {day} 
-                    </div>
-                )}
+                <FontAwesomeIcon icon={solid("arrow-right")} />
             </div>
+
 
         </div>
     )
