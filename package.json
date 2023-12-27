@@ -23,6 +23,11 @@
       "react-app/jest"
     ]
   },
+  "babelMacros" : {
+    "fontawesome-svg-core" : {
+      "license": "free"
+    }
+  },
   "browserslist": {
     "production": [
       ">0.2%",

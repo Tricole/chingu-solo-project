@@ -5,6 +5,12 @@
     position: relative;
 }
 
+.days_weeks_wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
 .days_weeks {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
