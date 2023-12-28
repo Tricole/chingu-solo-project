@@ -50,17 +50,21 @@ export const Event = ({day, dayOfWeek, date}) =>
 
     const dateConversion = (date) => {
         let tempDate = date.toLocaleDateString(undefined, { month: 'long', day: 'numeric' }); 
-        return tempDate.split(" ")[1] + tempDate.split(" ")[0];
+        return tempDate.split(" ")[1].toUpperCase() + " " + tempDate.split(" ")[0];
 
     }
 
     return (
 
-        <div className={styles.events_panel}>
-                <h1>Events Section</h1>
-                {daysOfWeek[dayOfWeek]}
+        <div className={styles.events_panel} >
+            <div className={styles.overlay}></div>
+            <div className={styles.content}>
 
-                {dateConversion(date)}
+                {daysOfWeek[dayOfWeek]}
+                <p>
+                    {dateConversion(date)}
+                </p>
+
                 <div className={styles.events_box}>
                     {displayEvents().map((event) => (
                         <div key={event.title}>{event.title}</div>
@@ -72,6 +76,10 @@ export const Event = ({day, dayOfWeek, date}) =>
                         onClick={addEvent}
                     />
                 </div>
+
+            </div>
+            
+
             </div>
         
         )

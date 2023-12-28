@@ -1,10 +1,38 @@
 .events_panel {
     position: relative;
-    display: flexbox;
+    background-image: url('../background_images/autumn.jpg');
+    background-position: center;
+    display: flex;
+    height: 100vh;
+    width: 50%;
+
+
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(245, 241, 241, 0.3);
+    z-index: 0;
+}
+
+.content {
+    position: relative;
+    z-index: 1;
+    font-size: 25px;
+    color: black;
+    display: flex;
+    flex-basis: 100%;
     flex-direction: column;
+    align-items: start;
+
 }
 
 .events_box {
+    color: black;
     display: flex;
     flex-direction: column;
 }
