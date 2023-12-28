@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro'
+import { Event } from './Event';
 
 import styles from "../styles/calendar.module.css"
 
@@ -9,14 +10,14 @@ const daysOfMonth = {Jan: 31 , Feb: 28 , Mar: 31, Apr: 30, May: 31, Jun: 30, Jul
 const daysOfWeek = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
 
 
-export const Calendar = () => {
+export const Calendar = ({onDateSelect}) => {
 
     let newDate = new Date();
     const monthIndex = newDate.getMonth();
     let year = newDate.getFullYear();
 
     const [prevDays, setPrevDays] = useState([]);
-    const [days, setDays] = useState([]);
+    const [days, setDays] = useState([]);   
     const [nextDays, setNextDays] = useState([]);
     const [currMonth, setMonth] = useState(monthIndex);
     const [currYear, setYear] = useState(year)
@@ -35,7 +36,6 @@ export const Calendar = () => {
         
         let nextMonthDays = 42 - (indexFirstDayOfMonth) - currMonthDays;
         let nextMonthDaysArr = [...Array(nextMonthDays + 1).keys()].slice(1);
-
 
         setPrevDays(prevMonthDaysArr);
         setDays(currMonthDaysArr);
@@ -62,12 +62,15 @@ export const Calendar = () => {
                 totalDays = daysOfMonth[months[11]];
                 break;
             default:
-                totalDays = leapYear && months[currMonth - 1] === "Feb" ?  29 : daysOfMonth[months[currMonth - 1]];
+                totalDays = leapYear && months[currMonth - 1] === "Feb"  
+                    ? 29 :
+                    daysOfMonth[months[currMonth - 1]];
         }
 
         return totalDays;
 
     }
+
 
     const toPrevMonth = () => {
         
@@ -86,8 +89,7 @@ export const Calendar = () => {
         if (currMonth === 11){
             setMonth(0);
             setYear(currYear + 1);
-        }
-        else
+        }else
             setMonth(currMonth + 1);
 
     };
@@ -97,7 +99,11 @@ export const Calendar = () => {
             {displayMonths()}
             <div className={styles.days_weeks_wrapper}>
 
-                <FontAwesomeIcon icon={solid("arrow-left")} 
+                <FontAwesomeIcon 
+                    icon={solid("arrow-left")} 
+                    size="xl" 
+                    style={{ color: "#bcbcbc"}} 
+                    // className={styles.arrows}
                     onClick={toPrevMonth}
                 />
 
@@ -117,8 +123,16 @@ export const Calendar = () => {
                     )}
 
                     {days.map( day => 
-                        <div className={styles.grid_curr_month}>
+                        <div className={styles.grid_curr_month}
+                            onClick={() => onDateSelect
+                                ({   
+                                    day:{day},
+                                    date: new Date(`${currMonth + 1} ${day} ${currYear}`),
+                                    dayOfWeek: (new Date()).getDay() 
+                                })
+                            }>    
                             {day} 
+                            
                         </div>
                     )}
                 
@@ -129,7 +143,11 @@ export const Calendar = () => {
                     )}
                 </div>
 
-                <FontAwesomeIcon icon={solid("arrow-right")} 
+                <FontAwesomeIcon 
+                    icon={solid("arrow-right")} 
+                    size="xl" 
+                    style={{color: "#bcbcbc"}} 
+                    // className={styles.arrows}
                     onClick={toNextMonth}
                 />
             </div>
