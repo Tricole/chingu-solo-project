@@ -1,0 +1,17 @@
+.events_panel {
+    position: relative;
+    display: flexbox;
+    flex-direction: column;
+}
+
+.events_box {
+    display: flex;
+    flex-direction: column;
+}
+
+.plus_button {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}

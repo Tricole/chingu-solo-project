@@ -1,7 +1,7 @@
-import './App.css';
 import React, { useState }  from 'react';
 import { Calendar } from './components/Calendar';
 import { Event } from './components/Event';
+import styles from './styles/app.module.css'
 
 function App() {
 
@@ -21,14 +21,16 @@ function App() {
 
   return (
   
-      <div className='App' >
-        <h1> eCalendar</h1>  
-        <Calendar onDateSelect={handleSelectedDate}/>
-        <Event 
-          date={selectedDate} 
-          day={selectedDay}
-          dayOfWeek={selectedDayOfWeek}
-        />
+      <div className={styles.app} >
+        <h1> eCalendar</h1> 
+        <div className={styles.split_window}>
+          <Calendar onDateSelect={handleSelectedDate}/>
+          <Event 
+            date={selectedDate} 
+            day={selectedDay}
+            dayOfWeek={selectedDayOfWeek}
+          />  
+        </div> 
         {/* <Event/> */}
       </div>
     

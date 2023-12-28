@@ -3,6 +3,7 @@
     flex-direction: column;
     align-items: center;
     position: relative;
+    margin-right: 20px;
 }
 
 .days_weeks_wrapper {

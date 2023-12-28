@@ -3,8 +3,7 @@ import React from "react";
 import { useEffect, useState } from "react"
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-
-
+import styles from '../styles/event.module.css'
 
 export const Event = ({day, dayOfWeek, date}) => 
 {
@@ -57,20 +56,22 @@ export const Event = ({day, dayOfWeek, date}) =>
 
     return (
 
-        <div>
+        <div className={styles.events_panel}>
                 <h1>Events Section</h1>
                 {daysOfWeek[dayOfWeek]}
-        
+
                 {dateConversion(date)}
-                <div className="eventsBox">
+                <div className={styles.events_box}>
                     {displayEvents().map((event) => (
                         <div key={event.title}>{event.title}</div>
                     ))}
                 </div>
+                <div className={styles.plus_button}>
 
-                <FontAwesomeIcon icon={solid("plus")} size="xl" style={{color: "#bcbcbc",}} 
-                    onClick={addEvent}
-                />
+                    <FontAwesomeIcon icon={solid("plus")} size="xl" style={{color: "#bcbcbc",}} 
+                        onClick={addEvent}
+                    />
+                </div>
             </div>
         
         )
