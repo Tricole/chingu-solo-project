@@ -40,8 +40,6 @@ export const Calendar = ({onDateSelect}) => {
         setPrevDays(prevMonthDaysArr);
         setDays(currMonthDaysArr);
         setNextDays(nextMonthDaysArr);
-        console.log("currMonth is now ", currMonth)
-        console.log("currYear is now ", currYear)
 
     }, [monthIndex, year, currMonth, currYear]);
 
@@ -94,20 +92,6 @@ export const Calendar = ({onDateSelect}) => {
         }else
             setMonth(currMonth + 1);
 
-    };
-
-    const daySelected = (day) => {
-        console.log("trying to pass");
-        console.log("day is ", day);
-
-        return (
-            // <div></div>
-            <Event
-                day={day}
-                dayOfWeek={0}
-                date={new Date(`${currMonth} ${day} ${currYear}`)}
-            />
-        )
     };
 
     return ( 
