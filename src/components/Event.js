@@ -5,7 +5,7 @@ import { solid } from '@fortawesome/fontawesome-svg-core/import.macro'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import styles from '../styles/event.module.css'
 
-export const Event = ({day, dayOfWeek, date}) => 
+export const Event = ({day, dayOfWeek, date, showModal}) => 
 {
 
     const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -43,9 +43,7 @@ export const Event = ({day, dayOfWeek, date}) =>
     }
 
     const addEvent = () => {
-        console.log("date is ", date);
-        console.log("day is ", day);
-        
+
     }
 
     const dateConversion = (date) => {
@@ -73,7 +71,7 @@ export const Event = ({day, dayOfWeek, date}) =>
                 <div className={styles.plus_button}>
 
                     <FontAwesomeIcon icon={solid("plus")} size="xl" style={{color: "#bcbcbc",}} 
-                        onClick={addEvent}
+                        onClick={()=> showModal(true)}
                     />
                 </div>
 
