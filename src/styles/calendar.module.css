@@ -36,3 +36,11 @@
     color: black;
     opacity: 0.3;
 }
+
+.arrows {
+    color: rgb(188, 188, 188),
+}
+
+:hover .arrows {
+    color: rgb(204, 36, 36)
+}
