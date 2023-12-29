@@ -124,12 +124,17 @@ export const Calendar = ({onDateSelect}) => {
 
                     {days.map( day => 
                         <div className={styles.grid_curr_month}
-                            onClick={() => onDateSelect
-                                ({   
-                                    day:{day},
-                                    date: new Date(`${currMonth + 1} ${day} ${currYear}`),
-                                    dayOfWeek: (new Date()).getDay() 
-                                })
+                            
+                            onClick={() => {
+                                let date = new Date(`${currMonth + 1} ${day} ${currYear}`);
+                                
+                                return onDateSelect
+                                    ({   
+                                        day:{day},
+                                        date: date,
+                                        dayOfWeek: (date).getDay() 
+                                    })
+                            } 
                             }>    
                             {day} 
                             
