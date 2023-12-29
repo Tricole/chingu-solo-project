@@ -22,10 +22,14 @@ function App() {
     console.log("set modal flag here");
     setModal(true);
     console.log("modal is now set to ", showModal);
-
   }
 
   const handleClose = () => setModal(false);
+
+  const handleSubmit = (data) => {
+    console.log("received data from form");
+    console.log(data);
+  }
 
 
   console.log('handleSelectedDate:', handleSelectedDate);
@@ -47,7 +51,7 @@ function App() {
             show={showModal} 
             handleClose={handleClose}>
             <p>Modal</p>
-            <Modal_Form/>
+            <Modal_Form onSubmit={handleSubmit}/>
           </Modal>
         </div> 
         {/* <Event/> */}

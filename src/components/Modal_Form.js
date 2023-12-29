@@ -1,10 +1,10 @@
 import React from "react"
 import styles from "../styles/modal_form.module.css"
 
-export const Modal_Form = () => {
+export const Modal_Form = ({handleSubmit}) => {
 
     return (
-        <form className={styles.form}>
+        <form className={styles.form} onSubmit={handleSubmit}>
             <div>
 
                 <label>
