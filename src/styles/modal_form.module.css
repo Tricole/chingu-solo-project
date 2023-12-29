@@ -3,15 +3,18 @@
     flex-direction: column;
     /* justify-content: space-between; */
     height: 100%;
+    align-items: left;
+    padding-left: 8%;
+    padding-right: 8%;
+    padding-bottom: 8%;
 }
 
 .form input {
-    display: flex;
-    flex-direction: column;
     margin-right: 0.5em;
 }
 
 .form label {
     float: left;
     margin-right: 0.5em;
+    margin-bottom: 0.5em;
 }
