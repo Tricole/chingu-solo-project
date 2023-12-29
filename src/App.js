@@ -1,8 +1,9 @@
 import React, { useState }  from 'react';
 import { Calendar } from './components/Calendar';
 import { Event } from './components/Event';
-import { Modal_Form } from './components/Modal_Form';
+import { Modal } from './components/Modal';
 import styles from './styles/app.module.css'
+import { Modal_Form } from './components/Modal_Form';
 
 function App() {
 
@@ -42,11 +43,12 @@ function App() {
             showModal={handleModal}
             handleClose={handleClose}
           />  
-          <Modal_Form 
+          <Modal 
             show={showModal} 
             handleClose={handleClose}>
             <p>Modal</p>
-          </Modal_Form>
+            <Modal_Form/>
+          </Modal>
         </div> 
         {/* <Event/> */}
       </div>
