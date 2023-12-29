@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react"
 import styles from "../styles/modal_form.module.css"
 
-export const Modal_Form = ({show}) => {
+export const Modal_Form = ({show, handleClose, children}) => {
+
+    const showHideClassName = show? `${styles.modal} ${styles.display}` 
+                            : `${styles.modal} ${styles.not_display}`;
 
     // const [showModal, setModal] = useState(false);
 
@@ -9,10 +12,22 @@ export const Modal_Form = ({show}) => {
     //     setModal(show);
 
     // }, [show])
+    console.log(show);
+    console.log(showHideClassName);
 
-    if (show === true)
-        return (
-            <div>Show Modal</div>
-        )
 
-}
+    return (
+        <div className={showHideClassName}>
+            <section className={styles.modal_main}>
+                {children}
+                <button type="button" onClick={handleClose}>
+                    Close
+                </button>
+
+            </section>
+
+        </div>
+
+        );
+
+};

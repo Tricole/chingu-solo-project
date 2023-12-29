@@ -17,11 +17,14 @@ function App() {
     setSelectedDayOfWeek(dayOfWeek);
   }
 
-  const handleModal = (flag) => {
+  const handleModal = () => {
     console.log("set modal flag here");
-    setModal(flag);
+    setModal(true);
+    console.log("modal is now set to ", showModal);
 
   }
+
+  const handleClose = () => setModal(false);
 
 
   console.log('handleSelectedDate:', handleSelectedDate);
@@ -37,8 +40,13 @@ function App() {
             day={selectedDay}
             dayOfWeek={selectedDayOfWeek}
             showModal={handleModal}
+            handleClose={handleClose}
           />  
-          <Modal_Form show={showModal}/>
+          <Modal_Form 
+            show={showModal} 
+            handleClose={handleClose}>
+            <p>Modal</p>
+          </Modal_Form>
         </div> 
         {/* <Event/> */}
       </div>
