@@ -1,10 +1,21 @@
 import React from "react"
 import styles from "../styles/modal_form.module.css"
 
-export const Modal_Form = ({handleSubmit}) => {
+export const Modal_Form = ({submitForm}) => {
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        const data = {};
+        formData.forEach((value, key) => {
+        data[key] = value;
+        });
+        submitForm(data); 
+    
+    }
 
     return (
-        <form className={styles.form} onSubmit={handleSubmit}>
+        <form className={styles.form} onSubmit={onSubmit}>
             <div>
 
                 <label>

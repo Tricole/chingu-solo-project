@@ -29,6 +29,7 @@ function App() {
   const handleSubmit = (data) => {
     console.log("received data from form");
     console.log(data);
+    setModal(false);
   }
 
 
@@ -51,7 +52,7 @@ function App() {
             show={showModal} 
             handleClose={handleClose}>
             <p>Modal</p>
-            <Modal_Form onSubmit={handleSubmit}/>
+            <Modal_Form submitForm={handleSubmit}/>
           </Modal>
         </div> 
         {/* <Event/> */}

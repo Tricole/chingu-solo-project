@@ -13,9 +13,7 @@ export const Modal = ({show, handleClose, children}) => {
             <section className={styles.modal_main}>
                 {children}
             </section>
-
         </div>
-
-        );
+    );
 
 };
