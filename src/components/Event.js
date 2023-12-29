@@ -5,7 +5,7 @@ import { solid } from '@fortawesome/fontawesome-svg-core/import.macro'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import styles from '../styles/event.module.css'
 
-export const Event = ({day, dayOfWeek, date, showModal, handleClose}) => 
+export const Event = ({day, dayOfWeek, date, showModal, handleClose, newEvent}) => 
 {
 
     const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -13,7 +13,12 @@ export const Event = ({day, dayOfWeek, date, showModal, handleClose}) =>
 
     const [eventList, setEvents] = useState([]);
 
+    if (typeof newEvent === 'object') 
+        setEvents([...eventList, newEvent]);
+
     console.log("date is ", date);
+    console.log("new event is :")
+    console.log(newEvent);
 
     const singleEvent = {
         title: "",
@@ -27,17 +32,21 @@ export const Event = ({day, dayOfWeek, date, showModal, handleClose}) =>
     }
 
     // useEffect = ( () => {
-    //     console.log("day came through here: ", day);
-    //     console.log("date came through here: ", date);
+    //     // console.log("day came through here: ", day);
+    //     // console.log("date came through here: ", date);
+    //     setEvents([...eventList, newEvent]);
 
-    // }, [day, date])
+    // }, [addEvent])
 
 
     const displayEvents = () => {
         console.log("date is ", date);
+        console.log("stringified date is ", date.toDateString());
         console.log("day is ", day);
-        return eventList.filter((event) => event.startDate.toDateString() === date.toDateString());
-
+        console.log("eventlist is :");
+        console.log(eventList);
+        return eventList.filter((event) => event.start_date === date);
+ 
         // return eventList.filter( (event) => event.startDate === date)
 
     }

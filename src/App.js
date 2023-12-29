@@ -1,4 +1,4 @@
-import React, { useState }  from 'react';
+import React, { useEffect, useState }  from 'react';
 import { Calendar } from './components/Calendar';
 import { Event } from './components/Event';
 import { Modal } from './components/Modal';
@@ -11,6 +11,11 @@ function App() {
   const [selectedDay, setSelectedDay] = useState( (new Date()).getDate());
   const [selectedDayOfWeek, setSelectedDayOfWeek] = useState( (new Date()).getDay());
   const [showModal, setModal] = useState(false);
+  const [newEvent, setEvent] = useState();
+
+  // useEffect(() => {
+
+  // },[])
   
   const handleSelectedDate = ({day, dayOfWeek, date }) => {
     setSelectedDate(date);
@@ -29,11 +34,11 @@ function App() {
   const handleSubmit = (data) => {
     console.log("received data from form");
     console.log(data);
+    setEvent(data);
+    console.log("data is set to :")
+    console.log(newEvent);
     setModal(false);
   }
-
-
-  console.log('handleSelectedDate:', handleSelectedDate);
 
   return (
   
@@ -47,6 +52,7 @@ function App() {
             dayOfWeek={selectedDayOfWeek}
             showModal={handleModal}
             handleClose={handleClose}
+            newEvent={newEvent}
           />  
           <Modal 
             show={showModal} 
