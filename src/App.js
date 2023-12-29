@@ -1,8 +1,9 @@
 import React, { useState }  from 'react';
 import { Calendar } from './components/Calendar';
 import { Event } from './components/Event';
-import { Modal_Form } from './components/Modal_Form';
+import { Modal } from './components/Modal';
 import styles from './styles/app.module.css'
+import { Modal_Form } from './components/Modal_Form';
 
 function App() {
 
@@ -17,10 +18,17 @@ function App() {
     setSelectedDayOfWeek(dayOfWeek);
   }
 
-  const handleModal = (flag) => {
+  const handleModal = () => {
     console.log("set modal flag here");
-    setModal(flag);
+    setModal(true);
+    console.log("modal is now set to ", showModal);
+  }
 
+  const handleClose = () => setModal(false);
+
+  const handleSubmit = (data) => {
+    console.log("received data from form");
+    console.log(data);
   }
 
 
@@ -37,8 +45,14 @@ function App() {
             day={selectedDay}
             dayOfWeek={selectedDayOfWeek}
             showModal={handleModal}
+            handleClose={handleClose}
           />  
-          <Modal_Form show={showModal}/>
+          <Modal 
+            show={showModal} 
+            handleClose={handleClose}>
+            <p>Modal</p>
+            <Modal_Form onSubmit={handleSubmit}/>
+          </Modal>
         </div> 
         {/* <Event/> */}
       </div>

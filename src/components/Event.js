@@ -5,7 +5,7 @@ import { solid } from '@fortawesome/fontawesome-svg-core/import.macro'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import styles from '../styles/event.module.css'
 
-export const Event = ({day, dayOfWeek, date, showModal}) => 
+export const Event = ({day, dayOfWeek, date, showModal, handleClose}) => 
 {
 
     const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];

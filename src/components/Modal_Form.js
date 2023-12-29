@@ -1,18 +1,48 @@
-import React, { useEffect, useState } from "react"
+import React from "react"
 import styles from "../styles/modal_form.module.css"
 
-export const Modal_Form = ({show}) => {
+export const Modal_Form = ({handleSubmit}) => {
 
-    // const [showModal, setModal] = useState(false);
+    return (
+        <form className={styles.form} onSubmit={handleSubmit}>
+            <div>
 
-    // useEffect = (() => {
-    //     setModal(show);
+                <label>
+                    Title:
+                    <input type="text" id="title" name="title"/>
+                </label>
+            </div>
+            <br></br>
 
-    // }, [show])
+            <div>
+                <label>
+                    Start Date:
+                    <input type="date" id="start_date" name="start_date"/>
+                </label>
 
-    if (show === true)
-        return (
-            <div>Show Modal</div>
-        )
+                <label>
+                    End Date:
+                    <input type="date" id="end_date" name="end_date"/>
+                </label>
+            </div>
 
+            <br></br>
+
+            <div>
+                <label>
+                    Begins:
+                    <input type="time" id="begins" name="begins"/>
+                </label>
+
+                <label>
+                    Ends:
+                    <input type="time" id="ends" name="ends"/>
+                </label>
+            </div>
+
+            <input type="submit" value="Submit"/>
+
+        </form>
+            
+    )
 }
