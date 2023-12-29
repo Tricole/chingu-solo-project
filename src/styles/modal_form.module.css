@@ -1,5 +1,13 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; */
+    height: 100%;
+}
+
 .form input {
-    display: block;
+    display: flex;
+    flex-direction: column;
     margin-right: 0.5em;
 }
 

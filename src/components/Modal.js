@@ -20,9 +20,9 @@ export const Modal = ({show, handleClose, children}) => {
         <div className={showHideClassName}>
             <section className={styles.modal_main}>
                 {children}
-                <button type="button" onClick={handleClose}>
+                {/* <button type="button" onClick={handleClose}>
                     Close
-                </button>
+                </button> */}
 
             </section>
 
