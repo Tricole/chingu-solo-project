@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import styles from "../styles/modal_form.module.css"
+import styles from "../styles/modal.module.css"
 
 export const Modal = ({show, handleClose, children}) => {
 
