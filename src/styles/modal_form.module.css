@@ -9,12 +9,13 @@
     padding-bottom: 8%;
 }
 
-.form input {
-    margin-right: 0.5em;
-}
-
 .form label {
     float: left;
     margin-right: 0.5em;
     margin-bottom: 0.5em;
+    /* width: 100%; */
+}
+
+.form input {
+    margin-right: 0.5em;
 }

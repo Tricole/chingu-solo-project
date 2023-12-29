@@ -24,13 +24,11 @@ export const Modal_Form = () => {
                     End Date:
                     <input type="date" id="end_date" name="end_date"/>
                 </label>
-
             </div>
 
             <br></br>
 
             <div>
-
                 <label>
                     Begins:
                     <input type="time" id="begins" name="begins"/>
@@ -40,8 +38,9 @@ export const Modal_Form = () => {
                     Ends:
                     <input type="time" id="ends" name="ends"/>
                 </label>
-
             </div>
+
+            <input type="submit" value="Submit"/>
 
         </form>
             
