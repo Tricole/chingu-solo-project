@@ -13,13 +13,6 @@ export const Event = ({day, dayOfWeek, date, showModal, handleClose, newEvent, s
 
     const [eventList, setEvents] = useState([]);
 
-    // if (typeof newEvent === 'object') {
-    //     setEvents([...eventList, newEvent]);
-    //     // setNewEvents({})
-
-    // }
-
-
     useEffect(() => {
         if(newEvent)
             setEvents([...eventList, newEvent]);
@@ -52,10 +45,6 @@ export const Event = ({day, dayOfWeek, date, showModal, handleClose, newEvent, s
             return eventList.filter((event) => event.start_date === formattedDate);
         else
             return "No Appointments"
-        
-    }
-
-    const addEvent = () => {
 
     }
 
@@ -80,7 +69,10 @@ export const Event = ({day, dayOfWeek, date, showModal, handleClose, newEvent, s
                     {  
                         displayEvents().length > 0? 
                             displayEvents().map((event) => (
-                                <div key={event.title}>{event.title}</div>
+                                
+                                <div key={event.title}>
+                                    {event.begins}
+                                    {event.title}</div>
                             )):
                             "No Appointments"
                     }
