@@ -4,13 +4,13 @@ import styles from "../styles/modal_form.module.css"
 export const Modal_Form = ({submitForm}) => {
 
     const onSubmit = (e) => {
+        
         e.preventDefault();
         const formData = new FormData(e.target);
         const data = {};
         formData.forEach((value, key) => {
-        data[key] = value;
+            data[key] = value;
         });
-        console.log("$$$$HOW MANY TIMES is form submitted from modal");
         submitForm(data); 
     
     }

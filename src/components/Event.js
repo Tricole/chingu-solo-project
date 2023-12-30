@@ -69,10 +69,22 @@ export const Event = ({day, dayOfWeek, date, showModal, handleClose, newEvent, s
                     {  
                         displayEvents().length > 0? 
                             displayEvents().map((event) => (
-                                
-                                <div key={event.title}>
-                                    {event.begins}
-                                    {event.title}</div>
+                                <>
+                                    
+                                    <div key={event.title} className={styles.singleEvent}>
+                                        <span>
+                                            {event.begins}
+                                            {event.title}
+                                        <span className={styles.icons}>
+                                            <FontAwesomeIcon icon={solid("pen-to-square")} />
+                                            <FontAwesomeIcon icon={solid("trash")} />                                            
+                                        </span>    
+
+                                        </span>
+                                    </div>
+                                </>
+
+
                             )):
                             "No Appointments"
                     }
