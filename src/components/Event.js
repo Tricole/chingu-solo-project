@@ -5,7 +5,7 @@ import { solid } from '@fortawesome/fontawesome-svg-core/import.macro'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import styles from '../styles/event.module.css'
 
-export const Event = ({day, dayOfWeek, date, showModal, handleClose, newEvent, updatedEvent, eventToUpdate }) => 
+export const Event = ({day, dayOfWeek, date, showModal, handleClose, newOrUpdatedEvent, updatedEvent, eventToUpdate }) => 
 {
 
     const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -14,23 +14,33 @@ export const Event = ({day, dayOfWeek, date, showModal, handleClose, newEvent, u
     const [eventList, setEvents] = useState([]);
 
     useEffect(() => {
-        if(newEvent)
-            setEvents([...eventList, newEvent]);
+        if(newOrUpdatedEvent){
+            
+            let updatedList = eventList.filter( (event) => event.id !== newOrUpdatedEvent.id);
 
-        if(updatedEvent){
-            let updatedList = eventList.filter( (event) => 
-                event.id !== updatedEvent.id
-            );
-            setEvents([...updatedList, updatedEvent]);
+            if (updatedList.length === eventList.length)
+                setEvents([...eventList, newOrUpdatedEvent]);
+
+            else
+                setEvents([...updatedList, newOrUpdatedEvent]);
+
+
         }
 
-    }, [newEvent]);
+        // if(updatedEvent){
+        //     let updatedList = eventList.filter( (event) => 
+        //         event.id !== updatedEvent.id
+        //     );
+           
+        // }
+
+    }, [newOrUpdatedEvent]);
 
 
 
     console.log("date is ", date);
     console.log("new event is :")
-    console.log(newEvent);
+    console.log(newOrUpdatedEvent);
 
     const singleEvent = {
         title: "",

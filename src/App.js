@@ -12,7 +12,7 @@ function App() {
   const [selectedDay, setSelectedDay] = useState( (new Date()).getDate());
   const [selectedDayOfWeek, setSelectedDayOfWeek] = useState( (new Date()).getDay());
   const [showModal, setModal] = useState(false);
-  const [newEvent, setNewEvent] = useState();
+  const [addEvent, setNewEvent] = useState();
   const [id, setId] = useState(0);
   const [event, setEvent] = useState();
   const [updatedEvent, setUpdatedEvent] = useState();
@@ -41,8 +41,8 @@ function App() {
   }
 
   const handleEventUpdate = (data) => {
-    setUpdatedEvent(data);
-    setNewEvent();
+    // setUpdatedEvent(data);
+    setNewEvent(data);
     setEvent();
     setModal(false);
   }
@@ -68,7 +68,7 @@ function App() {
             dayOfWeek={selectedDayOfWeek}
             showModal={handleModal}
             handleClose={handleClose}
-            newEvent={newEvent}
+            newOrUpdatedEvent={addEvent}
             eventToUpdate={setEvent}
             updatedEvent={updatedEvent}
           />  
