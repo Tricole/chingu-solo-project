@@ -8,6 +8,17 @@
     width: 50%;
 }
 
+.months {
+    margin-right: 40px;
+    font-size: larger;
+
+}
+
+.currMonth {
+    margin-right: 40px;
+    font-size: 3ch;
+}
+
 .days_weeks_wrapper {
     display: flex;
     flex-direction: row;
@@ -19,7 +30,6 @@
     grid-template-columns: repeat(7, 1fr);
     grid-template-rows: repeat(7, 1fr);
     gap: 5px;
-
     border-top-color: black;
     border-top-width: 2px;
     border-top-style: solid;
@@ -28,13 +38,13 @@
 }
 
 .grid_curr_month {
-    padding: 5px;
+    padding: 15px;
     text-align: center;
     color: black;
 }
 
 .grid_other_month {
-    padding: 5px;
+    padding: 15px;
     text-align: center;
     color: black;
     opacity: 0.3;

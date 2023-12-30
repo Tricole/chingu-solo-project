@@ -27,13 +27,6 @@ export const Event = ({day, dayOfWeek, date, showModal, handleClose, newOrUpdate
 
         }
 
-        // if(updatedEvent){
-        //     let updatedList = eventList.filter( (event) => 
-        //         event.id !== updatedEvent.id
-        //     );
-           
-        // }
-
     }, [newOrUpdatedEvent]);
 
 
