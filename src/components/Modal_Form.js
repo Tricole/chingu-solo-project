@@ -61,6 +61,28 @@ export const Modal_Form = ({submitForm, prevId, setId}) => {
                 </label>
             </div>
 
+            <div>
+                <label>
+                    People:
+                    <input type="text" id="people" name="people"/>
+                </label>
+            
+            </div>
+            <div>
+                <label>
+                    Location:
+                    <input type="text" id="location" name="location"/>
+                </label>
+            
+            </div>
+            <div>
+                <label>
+                    Description:
+                    <input type="text" id="description" name="description"/>
+                </label>
+            
+            </div>
+
             <input type="submit" value="Add Event"/>
 
         </form>

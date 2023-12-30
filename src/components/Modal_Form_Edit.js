@@ -57,6 +57,28 @@ export const Modal_Form_Edit = ({submitForm, event}) => {
                 </label>
             </div>
 
+            <div>
+                <label>
+                    People:
+                    <input type="text" id="people" name="people" defaultValue={event.people}/>
+                </label>
+            
+            </div>
+            <div>
+                <label>
+                    Location:
+                    <input type="text" id="location" name="location" defaultValue={event.location}/>
+                </label>
+            
+            </div>
+            <div>
+                <label>
+                    Description:
+                    <input type="text" id="description" name="description" defaultValue={event.description}/>
+                </label>
+            
+            </div>
+
             <input type="submit" value="Update"/>
 
         </form>
