@@ -46,18 +46,13 @@ export const Event = ({day, dayOfWeek, date, showModal, handleClose, newEvent, s
 
 
     const displayEvents = () => {
-        console.log("date is ", date);
-        console.log("stringified date is ", date.toDateString());
-        console.log("day is ", day);
-        console.log("eventlist is :");
-        console.log(eventList);
+        
+        const formattedDate = date.toISOString().split('T')[0];
         if (eventList)
-            return eventList.filter((event) => event.start_date === date);
+            return eventList.filter((event) => event.start_date === formattedDate);
         else
             return "No Appointments"
- 
-        // return eventList.filter( (event) => event.startDate === date)
-
+        
     }
 
     const addEvent = () => {
@@ -82,11 +77,12 @@ export const Event = ({day, dayOfWeek, date, showModal, handleClose, newEvent, s
                 </p>
 
                 <div className={styles.events_box}>
-                    {eventList.length > 0? 
-                        displayEvents().map((event) => (
-                            <div key={event.title}>{event.title}</div>
-                        )):
-                        "No Appointments"
+                    {  
+                        displayEvents().length > 0? 
+                            displayEvents().map((event) => (
+                                <div key={event.title}>{event.title}</div>
+                            )):
+                            "No Appointments"
                     }
                 </div>
                 <div className={styles.plus_button}>
