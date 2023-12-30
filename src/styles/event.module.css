@@ -31,9 +31,16 @@
 }
 
 .events_box {
-    color: black;
     display: flex;
     flex-direction: column;
+    background-color: rgba(54, 47, 47, 0.8);
+    border-radius: 5%;
+    opacity: 0.8;
+    height: 75%;
+    width: 100%;
+    align-items: flex-start;
+    padding: 10px;
+
 }
 
 .plus_button {
@@ -46,10 +53,10 @@
 .singleEvent {
     display: flex;
     flex-direction: row;
-    left: 20px;
 }
 
 .icons {
+    padding-top: 10px;
     position: absolute;
     right: 20px;
 

@@ -45,18 +45,17 @@ export const Calendar = ({onDateSelect}) => {
     const displayMonths = () => { 
         
         return (
-            <div > 
-            <span className={styles.months}>
-                {months[currMonth === 0? 11 : currMonth - 1]} 
+            <div> 
+                <span className={styles.months}>
+                    {months[currMonth === 0? 11 : currMonth - 1]} 
 
-            </span>
-            <span className={styles.currMonth}>
-                {months[currMonth]} 
-            </span>
-            <span className={styles.months}>
-                {months[currMonth === 11? 0 : currMonth + 1]}
-
-            </span>
+                </span>
+                <span className={styles.currMonth}>
+                    {months[currMonth]} 
+                </span>
+                <span className={styles.months}>
+                    {months[currMonth === 11? 0 : currMonth + 1]}
+                </span>
             </div>
         )
     }
