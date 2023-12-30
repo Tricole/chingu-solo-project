@@ -15,7 +15,7 @@ function App() {
   const [addEvent, setNewEvent] = useState();
   const [id, setId] = useState(0);
   const [event, setEvent] = useState();
-  const [updatedEvent, setUpdatedEvent] = useState();
+  // const [updatedEvent, setUpdatedEvent] = useState();
 
 
   // useEffect(() => {
@@ -70,7 +70,7 @@ function App() {
             handleClose={handleClose}
             newOrUpdatedEvent={addEvent}
             eventToUpdate={setEvent}
-            updatedEvent={updatedEvent}
+            // updatedEvent={updatedEvent}
           />  
           <Modal 
             show={showModal} 
@@ -84,7 +84,7 @@ function App() {
               />
             :
               <Modal_Form_Edit
-                submitForm={handleEventUpdate}
+                submitForm={handleSubmit}
                 event={event}
               />
             }
