@@ -27,7 +27,11 @@ function App() {
     setModal(true);
   }
 
-  const handleClose = () => setModal(false);
+  const handleClose = () => {
+    console.log("in handle close function");
+    setModal(false)
+
+  }
 
   const handleSubmit = (data) => {
     setNewEvent(data);
