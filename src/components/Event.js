@@ -5,7 +5,7 @@ import { solid } from '@fortawesome/fontawesome-svg-core/import.macro'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import styles from '../styles/event.module.css'
 
-export const Event = ({day, dayOfWeek, date, showModal, handleClose, newEvent, setNewEvents}) => 
+export const Event = ({day, dayOfWeek, date, showModal, handleClose, newEvent, updatedEvent, eventToUpdate }) => 
 {
 
     const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -16,6 +16,14 @@ export const Event = ({day, dayOfWeek, date, showModal, handleClose, newEvent, s
     useEffect(() => {
         if(newEvent)
             setEvents([...eventList, newEvent]);
+
+        if(updatedEvent){
+            let updatedList = eventList.filter( (event) => 
+                event.id !== updatedEvent.id
+            );
+            setEvents([...updatedList, updatedEvent]);
+        }
+
     }, [newEvent]);
 
 
@@ -36,7 +44,16 @@ export const Event = ({day, dayOfWeek, date, showModal, handleClose, newEvent, s
     };
 
 
-    const editEvent = () => {
+    const editEvent = (event) => {
+        //for edit event make the css conditional, so that in one case it updates 
+        //with button "Add event" and the other is just save
+
+        showModal(true);
+        console.log("I am in the edit Event function");
+        console.log("event to be updated is: ")
+        console.log(event);
+        eventToUpdate(event);
+
         console.log("button test");
     }
 

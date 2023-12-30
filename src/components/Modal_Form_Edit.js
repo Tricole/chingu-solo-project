@@ -1,8 +1,7 @@
 import React from "react"
-import { useState } from "react"
 import styles from "../styles/modal_form.module.css"
 
-export const Modal_Form = ({submitForm, prevId, setId}) => {
+export const Modal_Form_Edit = ({submitForm, event}) => {
 
     const onSubmit = (e) => {
 
@@ -10,12 +9,13 @@ export const Modal_Form = ({submitForm, prevId, setId}) => {
         const formData = new FormData(e.target);
         const data = {};
         
-        data["id"]= prevId;
-        setId(prevId => prevId + 1);
+        data["id"]= event.id;
 
         formData.forEach((value, key) => {
             data[key] = value;
         });
+        console.log("new updated data is ");
+        console.log(data);
         
         submitForm(data); 
     }
@@ -26,7 +26,7 @@ export const Modal_Form = ({submitForm, prevId, setId}) => {
 
                 <label>
                     Title:
-                    <input type="text" id="title" name="title"/>
+                    <input type="text" id="title" name="title" defaultValue={event.title}/>
                 </label>
             </div>
             <br></br>
@@ -34,12 +34,12 @@ export const Modal_Form = ({submitForm, prevId, setId}) => {
             <div>
                 <label>
                     Start Date:
-                    <input type="date" id="start_date" name="start_date"/>
+                    <input type="date" id="start_date" name="start_date" defaultValue={event.start_date}/>
                 </label>
 
                 <label>
                     End Date:
-                    <input type="date" id="end_date" name="end_date"/>
+                    <input type="date" id="end_date" name="end_date" defaultValue={event.end_date}/>
                 </label>
             </div>
 
@@ -48,16 +48,16 @@ export const Modal_Form = ({submitForm, prevId, setId}) => {
             <div>
                 <label>
                     Begins:
-                    <input type="time" id="begins" name="begins"/>
+                    <input type="time" id="begins" name="begins" defaultValue={event.begins}/>
                 </label>
 
                 <label>
                     Ends:
-                    <input type="time" id="ends" name="ends"/>
+                    <input type="time" id="ends" name="ends" defaultValue={event.ends}/>
                 </label>
             </div>
 
-            <input type="submit" value="Add Event"/>
+            <input type="submit" value="Update"/>
 
         </form>
             

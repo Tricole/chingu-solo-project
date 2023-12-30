@@ -4,6 +4,7 @@ import { Event } from './components/Event';
 import { Modal } from './components/Modal';
 import styles from './styles/app.module.css'
 import { Modal_Form } from './components/Modal_Form';
+import { Modal_Form_Edit } from './components/Modal_Form_Edit';
 
 function App() {
 
@@ -13,6 +14,9 @@ function App() {
   const [showModal, setModal] = useState(false);
   const [newEvent, setNewEvent] = useState();
   const [id, setId] = useState(0);
+  const [event, setEvent] = useState();
+  const [updatedEvent, setUpdatedEvent] = useState();
+
 
   // useEffect(() => {
 
@@ -31,10 +35,26 @@ function App() {
   const handleClose = () => setModal(false);
 
   const handleSubmit = (data) => {
+    console.log("I am in the original modal form");
     setNewEvent(data);
     setModal(false);
   }
 
+  const handleEventUpdate = (data) => {
+    setUpdatedEvent(data);
+    setNewEvent();
+    setEvent();
+    setModal(false);
+  }
+
+  // const eventToUpdate = () => {
+    
+  //   setEvent(eventToUpdate);
+  //   console.log("event to be updated:");
+  //   console.log(event);
+
+  // }
+  
 
   return (
   
@@ -49,17 +69,25 @@ function App() {
             showModal={handleModal}
             handleClose={handleClose}
             newEvent={newEvent}
-            // setNewEvent={setNewEvent}
+            eventToUpdate={setEvent}
+            updatedEvent={updatedEvent}
           />  
           <Modal 
             show={showModal} 
             handleClose={handleClose}>
             <p>Modal</p>
-            <Modal_Form 
-              submitForm={handleSubmit}
-              setId={setId} 
-              prevId={id}
-            />
+            {event == undefined?
+              <Modal_Form 
+                submitForm={handleSubmit}
+                setId={setId} 
+                prevId={id}
+              />
+            :
+              <Modal_Form_Edit
+                submitForm={handleEventUpdate}
+                event={event}
+              />
+            }
           </Modal>
         </div> 
         {/* <Event/> */}
