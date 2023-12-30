@@ -6,7 +6,6 @@
     height: 100vh;
     width: 50%;
 
-
 }
 
 .overlay {
@@ -28,6 +27,7 @@
     flex-basis: 100%;
     flex-direction: column;
     align-items: start;
+    padding: 20px;
 }
 
 .events_box {
@@ -41,4 +41,16 @@
     bottom: 0;
     left: 0;
     right: 0;
+}
+
+.singleEvent {
+    display: flex;
+    flex-direction: row;
+    left: 20px;
+}
+
+.icons {
+    position: absolute;
+    right: 20px;
+
 }

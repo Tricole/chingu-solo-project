@@ -127,7 +127,7 @@ export const Calendar = ({onDateSelect}) => {
                             
                             onClick={() => {
                                 let date = new Date(`${currMonth + 1} ${day} ${currYear}`);
-                                
+               
                                 return onDateSelect
                                     ({   
                                         day:{day},
@@ -137,7 +137,7 @@ export const Calendar = ({onDateSelect}) => {
                             } 
                             }>    
                             {day} 
-                            
+   
                         </div>
                     )}
                 

@@ -5,7 +5,7 @@ import { solid } from '@fortawesome/fontawesome-svg-core/import.macro'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import styles from '../styles/event.module.css'
 
-export const Event = ({day, dayOfWeek, date, showModal, handleClose}) => 
+export const Event = ({day, dayOfWeek, date, showModal, handleClose, newOrUpdatedEvent, updatedEvent, eventToUpdate }) => 
 {
 
     const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -13,7 +13,34 @@ export const Event = ({day, dayOfWeek, date, showModal, handleClose}) =>
 
     const [eventList, setEvents] = useState([]);
 
+    useEffect(() => {
+        if(newOrUpdatedEvent){
+            
+            let updatedList = eventList.filter( (event) => event.id !== newOrUpdatedEvent.id);
+
+            if (updatedList.length === eventList.length)
+                setEvents([...eventList, newOrUpdatedEvent]);
+
+            else
+                setEvents([...updatedList, newOrUpdatedEvent]);
+
+
+        }
+
+        // if(updatedEvent){
+        //     let updatedList = eventList.filter( (event) => 
+        //         event.id !== updatedEvent.id
+        //     );
+           
+        // }
+
+    }, [newOrUpdatedEvent]);
+
+
+
     console.log("date is ", date);
+    console.log("new event is :")
+    console.log(newOrUpdatedEvent);
 
     const singleEvent = {
         title: "",
@@ -24,33 +51,30 @@ export const Event = ({day, dayOfWeek, date, showModal, handleClose}) =>
         people:0,
         location: "",
         description: 0,
+    };
+
+
+    const editEvent = (event) => {
+        //for edit event make the css conditional, so that in one case it updates 
+        //with button "Add event" and the other is just save
+
+        showModal(true);
+        console.log("I am in the edit Event function");
+        console.log("event to be updated is: ")
+        console.log(event);
+        eventToUpdate(event);
+
+        console.log("button test");
     }
 
-    // useEffect = ( () => {
-    //     console.log("day came through here: ", day);
-    //     console.log("date came through here: ", date);
+    const deleteEvent = (removedEventId) => {
 
-    // }, [day, date])
-
-
-    const displayEvents = () => {
-        console.log("date is ", date);
-        console.log("day is ", day);
-        return eventList.filter((event) => event.startDate.toDateString() === date.toDateString());
-
-        // return eventList.filter( (event) => event.startDate === date)
-
+        let newEventList = eventList.filter((event) => 
+            event.id !== removedEventId
+        )
+        setEvents(newEventList);
     }
 
-    const addEvent = () => {
-
-    }
-
-    const dateConversion = (date) => {
-        let tempDate = date.toLocaleDateString(undefined, { month: 'long', day: 'numeric' }); 
-        return tempDate.split(" ")[1].toUpperCase() + " " + tempDate.split(" ")[0];
-
-    }
 
     return (
 
@@ -64,9 +88,32 @@ export const Event = ({day, dayOfWeek, date, showModal, handleClose}) =>
                 </p>
 
                 <div className={styles.events_box}>
-                    {displayEvents().map((event) => (
-                        <div key={event.title}>{event.title}</div>
-                    ))}
+                    {  
+                        displayEvents(date, eventList).length > 0? 
+                            displayEvents(date, eventList).map((event) => (
+                                <>
+                                    
+                                    <div key={event.title} className={styles.singleEvent}>
+                                        <span>
+                                            {event.begins}
+                                            {event.title}
+                                        <span className={styles.icons}>
+                                            <FontAwesomeIcon icon={solid("pen-to-square")} className={styles.edit}
+                                                onClick={()=>editEvent(event)}
+                                                />
+                                            <FontAwesomeIcon icon={solid("trash")} className={styles.delete}
+                                                onClick={()=>deleteEvent(event.id)}
+                                            />                                            
+                                        </span>    
+
+                                        </span>
+                                    </div>
+                                </>
+
+
+                            )):
+                            "No Appointments"
+                    }
                 </div>
                 <div className={styles.plus_button}>
 
@@ -82,4 +129,20 @@ export const Event = ({day, dayOfWeek, date, showModal, handleClose}) =>
         
         )
     
+}
+
+const displayEvents = (date, eventList) => {
+        
+    const formattedDate = date.toISOString().split('T')[0];
+    if (eventList)
+        return eventList.filter((event) => event.start_date === formattedDate);
+    else
+        return "No Appointments"
+
+}
+
+const dateConversion = (date) => {
+    let tempDate = date.toLocaleDateString(undefined, { month: 'long', day: 'numeric' }); 
+    return tempDate.split(" ")[1].toUpperCase() + " " + tempDate.split(" ")[0];
+
 }
