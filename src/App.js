@@ -11,7 +11,7 @@ function App() {
   const [selectedDay, setSelectedDay] = useState( (new Date()).getDate());
   const [selectedDayOfWeek, setSelectedDayOfWeek] = useState( (new Date()).getDay());
   const [showModal, setModal] = useState(false);
-  const [newEvent, setEvent] = useState();
+  const [newEvent, setNewEvent] = useState();
 
   // useEffect(() => {
 
@@ -34,7 +34,7 @@ function App() {
   const handleSubmit = (data) => {
     console.log("received data from form");
     console.log(data);
-    setEvent(data);
+    setNewEvent(data);
     console.log("data is set to :")
     console.log(newEvent);
     setModal(false);
@@ -53,6 +53,7 @@ function App() {
             showModal={handleModal}
             handleClose={handleClose}
             newEvent={newEvent}
+            // setNewEvent={setNewEvent}
           />  
           <Modal 
             show={showModal} 

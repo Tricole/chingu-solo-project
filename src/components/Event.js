@@ -5,7 +5,7 @@ import { solid } from '@fortawesome/fontawesome-svg-core/import.macro'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import styles from '../styles/event.module.css'
 
-export const Event = ({day, dayOfWeek, date, showModal, handleClose, newEvent}) => 
+export const Event = ({day, dayOfWeek, date, showModal, handleClose, newEvent, setNewEvents}) => 
 {
 
     const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -13,8 +13,19 @@ export const Event = ({day, dayOfWeek, date, showModal, handleClose, newEvent}) 
 
     const [eventList, setEvents] = useState([]);
 
-    if (typeof newEvent === 'object') 
-        setEvents([...eventList, newEvent]);
+    // if (typeof newEvent === 'object') {
+    //     setEvents([...eventList, newEvent]);
+    //     // setNewEvents({})
+
+    // }
+
+
+    useEffect(() => {
+        if(newEvent)
+            setEvents([...eventList, newEvent]);
+    }, [newEvent]);
+
+
 
     console.log("date is ", date);
     console.log("new event is :")
@@ -29,14 +40,9 @@ export const Event = ({day, dayOfWeek, date, showModal, handleClose, newEvent}) 
         people:0,
         location: "",
         description: 0,
-    }
+    };
 
-    // useEffect = ( () => {
-    //     // console.log("day came through here: ", day);
-    //     // console.log("date came through here: ", date);
-    //     setEvents([...eventList, newEvent]);
 
-    // }, [addEvent])
 
 
     const displayEvents = () => {
@@ -45,7 +51,10 @@ export const Event = ({day, dayOfWeek, date, showModal, handleClose, newEvent}) 
         console.log("day is ", day);
         console.log("eventlist is :");
         console.log(eventList);
-        return eventList.filter((event) => event.start_date === date);
+        if (eventList)
+            return eventList.filter((event) => event.start_date === date);
+        else
+            return "No Appointments"
  
         // return eventList.filter( (event) => event.startDate === date)
 
@@ -73,9 +82,12 @@ export const Event = ({day, dayOfWeek, date, showModal, handleClose, newEvent}) 
                 </p>
 
                 <div className={styles.events_box}>
-                    {displayEvents().map((event) => (
-                        <div key={event.title}>{event.title}</div>
-                    ))}
+                    {eventList.length > 0? 
+                        displayEvents().map((event) => (
+                            <div key={event.title}>{event.title}</div>
+                        )):
+                        "No Appointments"
+                    }
                 </div>
                 <div className={styles.plus_button}>
 

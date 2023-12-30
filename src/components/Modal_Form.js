@@ -10,6 +10,7 @@ export const Modal_Form = ({submitForm}) => {
         formData.forEach((value, key) => {
         data[key] = value;
         });
+        console.log("$$$$HOW MANY TIMES is form submitted from modal");
         submitForm(data); 
     
     }
@@ -51,7 +52,7 @@ export const Modal_Form = ({submitForm}) => {
                 </label>
             </div>
 
-            <input type="submit" value="Submit"/>
+            <input type="submit" value="Add Event"/>
 
         </form>
             
