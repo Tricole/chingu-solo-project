@@ -15,12 +15,7 @@ function App() {
   const [addEvent, setNewEvent] = useState();
   const [id, setId] = useState(0);
   const [event, setEvent] = useState();
-  // const [updatedEvent, setUpdatedEvent] = useState();
 
-
-  // useEffect(() => {
-
-  // },[])
   
   const handleSelectedDate = ({day, dayOfWeek, date }) => {
     setSelectedDate(date);
@@ -35,26 +30,17 @@ function App() {
   const handleClose = () => setModal(false);
 
   const handleSubmit = (data) => {
-    console.log("I am in the original modal form");
     setNewEvent(data);
     setModal(false);
-  }
-
-  const handleEventUpdate = (data) => {
-    // setUpdatedEvent(data);
-    setNewEvent(data);
     setEvent();
-    setModal(false);
   }
 
-  // const eventToUpdate = () => {
-    
-  //   setEvent(eventToUpdate);
-  //   console.log("event to be updated:");
-  //   console.log(event);
-
+  // const handleEventUpdate = (data) => {
+  //   setNewEvent(data);
+  //   setEvent();
+  //   setModal(false);
   // }
-  
+
 
   return (
   
@@ -70,7 +56,6 @@ function App() {
             handleClose={handleClose}
             newOrUpdatedEvent={addEvent}
             eventToUpdate={setEvent}
-            // updatedEvent={updatedEvent}
           />  
           <Modal 
             show={showModal} 
