@@ -10,7 +10,7 @@ export const Modal_Form = ({submitForm, prevId, setId}) => {
         const formData = new FormData(e.target);
         const data = {};
         
-        data["id"]= prevId;
+        data["id"]= prevId; 
         setId(prevId => prevId + 1);
 
         formData.forEach((value, key) => {

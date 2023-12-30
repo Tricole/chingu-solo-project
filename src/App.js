@@ -64,7 +64,6 @@ function App() {
           <Modal 
             show={showModal} 
             handleClose={handleClose}>
-            <p>Modal</p>
             {event == undefined?
               <Modal_Form 
                 submitForm={handleSubmit}
