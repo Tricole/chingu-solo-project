@@ -1,18 +1,20 @@
 import React from "react"
+import { useState } from "react"
 import styles from "../styles/modal_form.module.css"
 
-export const Modal_Form = ({submitForm}) => {
+export const Modal_Form = ({submitForm, prevId, setId}) => {
 
     const onSubmit = (e) => {
-        
+
         e.preventDefault();
         const formData = new FormData(e.target);
         const data = {};
         formData.forEach((value, key) => {
             data[key] = value;
         });
+        data["id"]= prevId;
+        setId(prevId => prevId + 1)
         submitForm(data); 
-    
     }
 
     return (

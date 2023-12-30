@@ -36,23 +36,19 @@ export const Event = ({day, dayOfWeek, date, showModal, handleClose, newEvent, s
     };
 
 
-
-
-    const displayEvents = () => {
-        
-        const formattedDate = date.toISOString().split('T')[0];
-        if (eventList)
-            return eventList.filter((event) => event.start_date === formattedDate);
-        else
-            return "No Appointments"
-
+    const editEvent = () => {
+        console.log("button test");
     }
 
-    const dateConversion = (date) => {
-        let tempDate = date.toLocaleDateString(undefined, { month: 'long', day: 'numeric' }); 
-        return tempDate.split(" ")[1].toUpperCase() + " " + tempDate.split(" ")[0];
+    const deleteEvent = (removedEvent) => {
 
+        // let newEventList = eventList.filter((event) => {
+        //     event.
+        // })
+
+        console.log("button test");
     }
+
 
     return (
 
@@ -67,8 +63,8 @@ export const Event = ({day, dayOfWeek, date, showModal, handleClose, newEvent, s
 
                 <div className={styles.events_box}>
                     {  
-                        displayEvents().length > 0? 
-                            displayEvents().map((event) => (
+                        displayEvents(date, eventList).length > 0? 
+                            displayEvents(date, eventList).map((event) => (
                                 <>
                                     
                                     <div key={event.title} className={styles.singleEvent}>
@@ -76,8 +72,12 @@ export const Event = ({day, dayOfWeek, date, showModal, handleClose, newEvent, s
                                             {event.begins}
                                             {event.title}
                                         <span className={styles.icons}>
-                                            <FontAwesomeIcon icon={solid("pen-to-square")} />
-                                            <FontAwesomeIcon icon={solid("trash")} />                                            
+                                            <FontAwesomeIcon icon={solid("pen-to-square")} className={styles.edit}
+                                                onClick={()=>editEvent()}
+                                                />
+                                            <FontAwesomeIcon icon={solid("trash")} className={styles.delete}
+                                                onClick={()=>deleteEvent(event)}
+                                            />                                            
                                         </span>    
 
                                         </span>
@@ -103,4 +103,20 @@ export const Event = ({day, dayOfWeek, date, showModal, handleClose, newEvent, s
         
         )
     
+}
+
+const displayEvents = (date, eventList) => {
+        
+    const formattedDate = date.toISOString().split('T')[0];
+    if (eventList)
+        return eventList.filter((event) => event.start_date === formattedDate);
+    else
+        return "No Appointments"
+
+}
+
+const dateConversion = (date) => {
+    let tempDate = date.toLocaleDateString(undefined, { month: 'long', day: 'numeric' }); 
+    return tempDate.split(" ")[1].toUpperCase() + " " + tempDate.split(" ")[0];
+
 }

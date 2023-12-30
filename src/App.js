@@ -12,6 +12,7 @@ function App() {
   const [selectedDayOfWeek, setSelectedDayOfWeek] = useState( (new Date()).getDay());
   const [showModal, setModal] = useState(false);
   const [newEvent, setNewEvent] = useState();
+  const [id, setId] = useState(0);
 
   // useEffect(() => {
 
@@ -24,21 +25,16 @@ function App() {
   }
 
   const handleModal = () => {
-    console.log("set modal flag here");
     setModal(true);
-    console.log("modal is now set to ", showModal);
   }
 
   const handleClose = () => setModal(false);
 
   const handleSubmit = (data) => {
-    console.log("received data from form");
-    console.log(data);
     setNewEvent(data);
-    console.log("data is set to :")
-    console.log(newEvent);
     setModal(false);
   }
+
 
   return (
   
@@ -59,7 +55,11 @@ function App() {
             show={showModal} 
             handleClose={handleClose}>
             <p>Modal</p>
-            <Modal_Form submitForm={handleSubmit}/>
+            <Modal_Form 
+              submitForm={handleSubmit}
+              setId={setId} 
+              prevId={id}
+            />
           </Modal>
         </div> 
         {/* <Event/> */}
