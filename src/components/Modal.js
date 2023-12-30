@@ -6,7 +6,6 @@ export const Modal = ({show, handleClose, children}) => {
     const showHideClassName = show? `${styles.modal} ${styles.display}` 
                             : `${styles.modal} ${styles.not_display}`;
     
-    console.log(showHideClassName);
 
     return (
         <div className={showHideClassName}>

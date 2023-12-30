@@ -40,13 +40,12 @@ export const Event = ({day, dayOfWeek, date, showModal, handleClose, newEvent, s
         console.log("button test");
     }
 
-    const deleteEvent = (removedEvent) => {
+    const deleteEvent = (removedEventId) => {
 
-        // let newEventList = eventList.filter((event) => {
-        //     event.
-        // })
-
-        console.log("button test");
+        let newEventList = eventList.filter((event) => 
+            event.id !== removedEventId
+        )
+        setEvents(newEventList);
     }
 
 
@@ -73,10 +72,10 @@ export const Event = ({day, dayOfWeek, date, showModal, handleClose, newEvent, s
                                             {event.title}
                                         <span className={styles.icons}>
                                             <FontAwesomeIcon icon={solid("pen-to-square")} className={styles.edit}
-                                                onClick={()=>editEvent()}
+                                                onClick={()=>editEvent(event)}
                                                 />
                                             <FontAwesomeIcon icon={solid("trash")} className={styles.delete}
-                                                onClick={()=>deleteEvent(event)}
+                                                onClick={()=>deleteEvent(event.id)}
                                             />                                            
                                         </span>    
 
