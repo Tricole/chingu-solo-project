@@ -105,6 +105,11 @@ export const Calendar = ({onDateSelect}) => {
 
     return ( 
         <div className={styles.main_calendar}>
+            <div className={styles.header}>
+                <h1 className={styles.header1}>eCalendar </h1>
+                <h3 className={styles.header2}>{currYear}</h3>
+      
+            </div>
             {displayMonths()}
             <div className={styles.days_weeks_wrapper}>
 

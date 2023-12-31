@@ -8,6 +8,15 @@
     width: 50%;
 }
 
+.header {
+    display: flex;
+    align-items: center;
+}
+
+.header1 {
+    margin-right: 50px;
+}
+
 .months {
     margin-right: 40px;
     font-size: larger;

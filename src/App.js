@@ -49,7 +49,7 @@ function App() {
   return (
   
       <div className={styles.app} >
-        <h1> eCalendar</h1> 
+
         <div className={styles.split_window}>
           <Calendar onDateSelect={handleSelectedDate}/>
           <Event 
