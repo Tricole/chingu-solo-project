@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro'
-import { Event } from './Event';
-
 import styles from "../styles/calendar.module.css"
 
 const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -21,6 +19,7 @@ export const Calendar = ({onDateSelect}) => {
     const [nextDays, setNextDays] = useState([]);
     const [currMonth, setMonth] = useState(monthIndex);
     const [currYear, setYear] = useState(year)
+    const containerRef = useRef(null);
 
 
     useEffect(() => {
@@ -47,8 +46,19 @@ export const Calendar = ({onDateSelect}) => {
     const displayMonths = () => { 
         
         return (
-            <span> {months[currMonth === 0? 11 : currMonth - 1]} {months[currMonth]} {months[currMonth === 11? 0 : currMonth + 1]}</span>
-            )
+            <div> 
+                <span className={styles.months}>
+                    {months[currMonth === 0? 11 : currMonth - 1]} 
+
+                </span>
+                <span className={styles.currMonth}>
+                    {months[currMonth]} 
+                </span>
+                <span className={styles.months}>
+                    {months[currMonth === 11? 0 : currMonth + 1]}
+                </span>
+            </div>
+        )
     }
 
 
@@ -94,8 +104,36 @@ export const Calendar = ({onDateSelect}) => {
 
     };
 
+    const handleScroll = (direction) => {
+        const container = containerRef.current;
+      
+        if (container) {
+          const scrollAmount = direction === 'left' ? -container.offsetWidth : container.offsetWidth;
+          container.scrollLeft += scrollAmount;
+        }
+      };
+
+      const isCurrentDate = (day) => {
+        const currentDate = new Date();
+        return (
+          currentDate.getFullYear() === currYear &&
+          currentDate.getMonth() === currMonth &&
+          parseInt(day, 10) === currentDate.getDate()
+        );
+      };
+      
+      
+
+
+
+
     return ( 
         <div className={styles.main_calendar}>
+            <div className={styles.header}>
+                <h1 className={styles.header1}>eCalendar </h1>
+                <h3 className={styles.header2}>{currYear}</h3>
+      
+            </div>
             {displayMonths()}
             <div className={styles.days_weeks_wrapper}>
 
@@ -103,12 +141,15 @@ export const Calendar = ({onDateSelect}) => {
                     icon={solid("arrow-left")} 
                     size="xl" 
                     style={{ color: "#bcbcbc"}} 
-                    // className={styles.arrows}
-                    onClick={toPrevMonth}
+                    onClick={ () => {
+                        handleScroll('left');
+                        toPrevMonth();
+                    }}   
                 />
 
 
-                <div className={styles.days_weeks}>
+
+                <div className={styles.days_weeks} ref={containerRef}>
                     
                     {daysOfWeek.map (weekDay => 
                         <div className={styles.grid_curr_Month}>
@@ -123,7 +164,7 @@ export const Calendar = ({onDateSelect}) => {
                     )}
 
                     {days.map( day => 
-                        <div className={styles.grid_curr_month}
+                        <div className={`${styles.grid_curr_month} ${isCurrentDate(day) ? styles.bold : ''}`}
                             
                             onClick={() => {
                                 let date = new Date(`${currMonth + 1} ${day} ${currYear}`);
@@ -152,7 +193,6 @@ export const Calendar = ({onDateSelect}) => {
                     icon={solid("arrow-right")} 
                     size="xl" 
                     style={{color: "#bcbcbc"}} 
-                    // className={styles.arrows}
                     onClick={toNextMonth}
                 />
             </div>

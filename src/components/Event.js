@@ -27,13 +27,6 @@ export const Event = ({day, dayOfWeek, date, showModal, handleClose, newOrUpdate
 
         }
 
-        // if(updatedEvent){
-        //     let updatedList = eventList.filter( (event) => 
-        //         event.id !== updatedEvent.id
-        //     );
-           
-        // }
-
     }, [newOrUpdatedEvent]);
 
 
@@ -87,7 +80,7 @@ export const Event = ({day, dayOfWeek, date, showModal, handleClose, newOrUpdate
                     {dateConversion(date)}
                 </p>
 
-                <div className={styles.events_box}>
+                <div className={styles.events_box}>  
                     {  
                         displayEvents(date, eventList).length > 0? 
                             displayEvents(date, eventList).map((event) => (
@@ -115,9 +108,10 @@ export const Event = ({day, dayOfWeek, date, showModal, handleClose, newOrUpdate
                             "No Appointments"
                     }
                 </div>
+                <div className={styles.vertical_line}></div>
                 <div className={styles.plus_button}>
 
-                    <FontAwesomeIcon icon={solid("plus")} size="xl" style={{color: "#bcbcbc",}} 
+                    <FontAwesomeIcon icon={solid("plus")} size="2xl" style={{color: "#cbd7ec",}} 
                         onClick={()=> showModal(true)}
                     />
                 </div>
