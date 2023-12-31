@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro'
 import styles from "../styles/calendar.module.css"
@@ -19,6 +19,7 @@ export const Calendar = ({onDateSelect}) => {
     const [nextDays, setNextDays] = useState([]);
     const [currMonth, setMonth] = useState(monthIndex);
     const [currYear, setYear] = useState(year)
+    const containerRef = useRef(null);
 
 
     useEffect(() => {
@@ -103,6 +104,29 @@ export const Calendar = ({onDateSelect}) => {
 
     };
 
+    const handleScroll = (direction) => {
+        const container = containerRef.current;
+      
+        if (container) {
+          const scrollAmount = direction === 'left' ? -container.offsetWidth : container.offsetWidth;
+          container.scrollLeft += scrollAmount;
+        }
+      };
+
+      const isCurrentDate = (day) => {
+        const currentDate = new Date();
+        return (
+          currentDate.getFullYear() === currYear &&
+          currentDate.getMonth() === currMonth &&
+          parseInt(day, 10) === currentDate.getDate()
+        );
+      };
+      
+      
+
+
+
+
     return ( 
         <div className={styles.main_calendar}>
             <div className={styles.header}>
@@ -117,11 +141,15 @@ export const Calendar = ({onDateSelect}) => {
                     icon={solid("arrow-left")} 
                     size="xl" 
                     style={{ color: "#bcbcbc"}} 
-                    onClick={toPrevMonth}
+                    onClick={ () => {
+                        handleScroll('left');
+                        toPrevMonth();
+                    }}   
                 />
 
 
-                <div className={styles.days_weeks}>
+
+                <div className={styles.days_weeks} ref={containerRef}>
                     
                     {daysOfWeek.map (weekDay => 
                         <div className={styles.grid_curr_Month}>
@@ -136,7 +164,7 @@ export const Calendar = ({onDateSelect}) => {
                     )}
 
                     {days.map( day => 
-                        <div className={styles.grid_curr_month}
+                        <div className={`${styles.grid_curr_month} ${isCurrentDate(day) ? styles.bold : ''}`}
                             
                             onClick={() => {
                                 let date = new Date(`${currMonth + 1} ${day} ${currYear}`);

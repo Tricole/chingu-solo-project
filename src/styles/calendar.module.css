@@ -28,6 +28,11 @@
     font-size: 3ch;
 }
 
+.bold {
+    font-weight: bold;
+}
+
+
 .days_weeks_wrapper {
     display: flex;
     flex-direction: row;
