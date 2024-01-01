@@ -19,8 +19,6 @@ export const Calendar = ({onDateSelect}) => {
     const [nextDays, setNextDays] = useState([]);
     const [currMonth, setMonth] = useState(monthIndex);
     const [currYear, setYear] = useState(year)
-    const containerRef = useRef(null);
-
 
     useEffect(() => {
 
@@ -104,14 +102,7 @@ export const Calendar = ({onDateSelect}) => {
 
     };
 
-    const handleScroll = (direction) => {
-        const container = containerRef.current;
-      
-        if (container) {
-          const scrollAmount = direction === 'left' ? -container.offsetWidth : container.offsetWidth;
-          container.scrollLeft += scrollAmount;
-        }
-      };
+    
 
       const isCurrentDate = (day) => {
         const currentDate = new Date();
@@ -142,14 +133,13 @@ export const Calendar = ({onDateSelect}) => {
                     size="xl" 
                     style={{ color: "#bcbcbc"}} 
                     onClick={ () => {
-                        handleScroll('left');
                         toPrevMonth();
                     }}   
                 />
 
 
 
-                <div className={styles.days_weeks} ref={containerRef}>
+                <div className={styles.days_weeks}>
                     
                     {daysOfWeek.map (weekDay => 
                         <div className={styles.grid_curr_Month}>
