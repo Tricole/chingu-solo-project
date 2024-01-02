@@ -1,7 +1,7 @@
 import React from "react"
 import styles from "../styles/modal_form.module.css"
 
-export const Modal_Form_Edit = ({submitForm, event}) => {
+export const ModalFormEdit = ({submitForm, event}) => {
 
     const onSubmit = (e) => {
 

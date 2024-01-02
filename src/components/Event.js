@@ -5,7 +5,7 @@ import { solid } from '@fortawesome/fontawesome-svg-core/import.macro'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import styles from '../styles/event.module.css'
 
-export const Event = ({day, dayOfWeek, date, showModal, handleClose, newOrUpdatedEvent, updatedEvent, eventToUpdate }) => 
+export const Event = ({ dayOfWeek, date, showModal, newOrUpdatedEvent, eventToUpdate }) => 
 {
 
     const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -29,35 +29,10 @@ export const Event = ({day, dayOfWeek, date, showModal, handleClose, newOrUpdate
 
     }, [newOrUpdatedEvent]);
 
-
-
-    console.log("date is ", date);
-    console.log("new event is :")
-    console.log(newOrUpdatedEvent);
-
-    const singleEvent = {
-        title: "",
-        startDate: 0,
-        endDate: 0,
-        begins: 0,
-        ends: 0,
-        people:0,
-        location: "",
-        description: 0,
-    };
-
-
     const editEvent = (event) => {
-        //for edit event make the css conditional, so that in one case it updates 
-        //with button "Add event" and the other is just save
 
         showModal(true);
-        console.log("I am in the edit Event function");
-        console.log("event to be updated is: ")
-        console.log(event);
         eventToUpdate(event);
-
-        console.log("button test");
     }
 
     const deleteEvent = (removedEventId) => {
@@ -102,7 +77,6 @@ export const Event = ({day, dayOfWeek, date, showModal, handleClose, newOrUpdate
                                         </span>
                                     </div>
                                 </>
-
 
                             )):
                             "No Appointments"

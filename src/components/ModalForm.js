@@ -1,8 +1,7 @@
 import React from "react"
-import { useState } from "react"
 import styles from "../styles/modal_form.module.css"
 
-export const Modal_Form = ({submitForm, prevId, setId}) => {
+export const ModalForm = ({submitForm, prevId, setId}) => {
 
     const onSubmit = (e) => {
 

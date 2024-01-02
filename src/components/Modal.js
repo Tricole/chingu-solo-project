@@ -7,8 +7,6 @@ export const Modal = ({show, handleClose, children}) => {
     const modalRef = useRef(null);
 
     const handleClickOutside = (e) => {
-        console.log("I tried to click outside!");
-        console.log(e.target);
         if (modalRef.current && !modalRef.current.contains(e.target)){
             handleClose();
 
@@ -16,8 +14,6 @@ export const Modal = ({show, handleClose, children}) => {
     }
 
     useEffect( ()=> {
-
-        console.log("inside useEffect for modal.js");
         if(show) 
             document.addEventListener('mousedown' , handleClickOutside);
 

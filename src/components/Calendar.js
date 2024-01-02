@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro'
 import styles from "../styles/calendar.module.css"
@@ -159,8 +159,7 @@ export const Calendar = ({onDateSelect}) => {
                             onClick={() => {
                                 let date = new Date(`${currMonth + 1} ${day} ${currYear}`);
                
-                                return onDateSelect
-                                    ({   
+                                return onDateSelect({   
                                         day:{day},
                                         date: date,
                                         dayOfWeek: (date).getDay() 
