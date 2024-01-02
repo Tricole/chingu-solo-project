@@ -1,10 +1,10 @@
-import React, { useEffect, useState }  from 'react';
+import React, { useState }  from 'react';
 import { Calendar } from './components/Calendar';
 import { Event } from './components/Event';
 import { Modal } from './components/Modal';
 import styles from './styles/app.module.css'
-import { Modal_Form } from './components/Modal_Form';
-import { Modal_Form_Edit } from './components/Modal_Form_Edit';
+import { ModalForm } from './components/ModalForm';
+import { ModalFormEdit } from './components/ModalFormEdit';
 
 function App() {
 
@@ -28,7 +28,6 @@ function App() {
   }
 
   const handleClose = () => {
-    console.log("in handle close function");
     setModal(false)
 
   }
@@ -38,13 +37,6 @@ function App() {
     setModal(false);
     setEvent();
   }
-
-  // const handleEventUpdate = (data) => {
-  //   setNewEvent(data);
-  //   setEvent();
-  //   setModal(false);
-  // }
-
 
   return (
   
@@ -64,21 +56,20 @@ function App() {
           <Modal 
             show={showModal} 
             handleClose={handleClose}>
-            {event == undefined?
-              <Modal_Form 
+            {event === undefined?
+              <ModalForm 
                 submitForm={handleSubmit}
                 setId={setId} 
                 prevId={id}
               />
             :
-              <Modal_Form_Edit
+              <ModalFormEdit
                 submitForm={handleSubmit}
                 event={event}
               />
             }
           </Modal>
         </div> 
-        {/* <Event/> */}
       </div>
     
   );
