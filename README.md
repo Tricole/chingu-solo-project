@@ -14,9 +14,12 @@ This app was created for the Chingu Solo Project. It is the tier 3 eCalendar app
 
 - Selecting any of the days of the month brings up the events section for that day 
 
+- Existing events for the days are displayed in the events section. They can be updated or deleted from the same area
+
 - New events for that day or any other day can be created using the big plus button at the bottom of the events area
 
 - Plus button brings up a modal form with a number of event fields that can be updated as necessary. Submitting this creates a new event
+
 
 ## Tech Used / Dependencies
 
